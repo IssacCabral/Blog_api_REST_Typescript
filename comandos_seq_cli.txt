@@ -1,0 +1,3 @@
+npx sequelize-cli db:create // criar o banco pelo sequelize-cli
+npx sequelize-cli migration:generate --name create-categories // criar uma tabela
+npx sequelize-cli db:migrate // olha todas as migrations do meu projeto que não foram executadas ainda e executa
