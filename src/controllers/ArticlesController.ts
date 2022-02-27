@@ -1,38 +1,42 @@
 import {Request, Response} from 'express'
-import Category from '../models/Category'
+import Article from '../models/Article'
 import slugify from 'slugify'
 
-class CategoriesController{
+class ArticlesController{
     async create(req: Request, res: Response){
-        const {title} = req.body
-        const category = await Category.create({
+        const {title, body, categoryId} = req.body
+        const article = await Article.create({
             title,
-            slug: slugify(title, {lower: true})
+            slug: slugify(title, {lower: true}),
+            body: body,
+            categoryId: categoryId
         })
-        return res.status(201).json(category)
+        return res.status(201).json(article)
     }
 
     async findAll(req: Request, res: Response){
-        const categories = await Category.findAll()
+        const categories = await Article.findAll()
         return res.json(categories)
     }
 
     async findOne(req: Request, res: Response){
         const id = parseInt(req.params.id)
-        const category = await Category.findOne({
+        const article = await Article.findOne({
             where: {
                 id: id
             }
         })
-        return category ? res.status(200).json(category) : res.sendStatus(404)
+        return article ? res.status(200).json(article) : res.sendStatus(404)
     }
 
     async update(req: Request, res: Response){
         const id = parseInt(req.params.id)
-        const {title, slug} = req.body 
-        await Category.update({
+        const {title, body, categoryId} = req.body 
+        await Article.update({
             title,
-            slug
+            slug: slugify(title, {lower: true}),
+            body,
+            categoryId
         }, {where: {
             id: id
         }})
@@ -41,7 +45,7 @@ class CategoriesController{
 
     async destroy(req: Request, res: Response){
         const id = parseInt(req.params.id)
-        await Category.destroy({
+        await Article.destroy({
             where: {
                 id: id
             }
@@ -50,4 +54,4 @@ class CategoriesController{
     }
 }
 
-export default new CategoriesController()
+export default new ArticlesController()
