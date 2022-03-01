@@ -51,6 +51,10 @@ class ArticleService{
         await Article.destroy({where: {id}})
         return {data: "Artigo removido"}
     }
+
+    async findAndCountAll(pageNum: number){
+
+    }
 }
 
 export default new ArticleService()

@@ -16,5 +16,7 @@ router.get('/articles', ArticlesController.findAll)
 router.get('/article/:id', ArticlesController.findByPk)
 router.put('/article/:id', ArticlesController.update)
 router.delete('/article/:id', ArticlesController.destroy)
+// pagination
+router.get('/articles/page/:num', ArticlesController.pagination)
 
 export default router
