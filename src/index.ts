@@ -1,5 +1,5 @@
 import express, {json} from 'express'
-import router from './router'
+import router from './routes/router'
 import db from './config/db_connection'
 const PORT = 3333
 const app = express()

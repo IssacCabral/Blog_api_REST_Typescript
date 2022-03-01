@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import connection from '../config/db_connection'
+import connection from '../../config/db_connection'
 import Category from './Category'
 
 const Article = connection.define('articles', {
