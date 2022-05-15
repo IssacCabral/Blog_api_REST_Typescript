@@ -8,7 +8,7 @@ app.use(json())
 app.use(router)
 
 app.get('/', (req, res) => {
-    res.json({message: "Tudo ok"})
+    res.send('Bem vindo a API')
 })
 
 app.listen(PORT, async () => {
